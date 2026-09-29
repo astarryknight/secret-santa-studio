@@ -11,16 +11,13 @@
     <script type="module" src="app.js"></script>
   </head>
   <body>
-    <div class="snow snow-one" aria-hidden="true">✳</div>
-    <div class="snow snow-two" aria-hidden="true">✳</div>
-    <div class="snow snow-three" aria-hidden="true">✳</div>
+    <div id="celebration" class="celebration" aria-hidden="true"></div>
 
     <header class="site-header">
       <a class="brand" href="./" aria-label="Secret Santa Studio home">
         <span class="brand-mark" aria-hidden="true">✦</span>
         <span>Secret Santa <em>Studio</em></span>
       </a>
-      <span class="header-note"><span class="status-dot"></span> A little holiday magic, made simple</span>
     </header>
 
     <main>
@@ -92,7 +89,6 @@
         <div class="reveal-shell">
           <p class="eyebrow center"><span class="eyebrow-line"></span> A SPECIAL DELIVERY <span class="eyebrow-line"></span></p>
           <div class="reveal-card">
-            <div class="reveal-stamp" aria-hidden="true">✦</div>
             <p class="small-label">SECRET SANTA / YOUR ASSIGNMENT</p>
             <h1 id="reveal-heading">A little mystery<br />awaits...</h1>
             <p id="reveal-intro" class="reveal-intro"></p>
@@ -104,14 +100,12 @@
               <p class="assignment-note">Keep it a secret. Make it magical.</p>
             </div>
           </div>
-          <p class="reveal-footer">Made with a little holiday magic <span aria-hidden="true">✳</span></p>
         </div>
       </section>
 
       <section id="invalid-view" class="view reveal-view" aria-labelledby="invalid-heading" hidden>
         <div class="reveal-shell">
           <div class="reveal-card invalid-card">
-            <div class="reveal-stamp" aria-hidden="true">✦</div>
             <p class="small-label">OOPS, A LITTLE MIX-UP</p>
             <h1 id="invalid-heading">This envelope<br />isn't quite right.</h1>
             <p class="reveal-intro">The link may be incomplete or changed. Ask your organizer to send your personal link again.</p>
@@ -120,6 +114,6 @@
       </section>
     </main>
 
-    <footer class="site-footer"><span>Secret Santa Studio</span><span>Made for merry little moments <span aria-hidden="true">✦</span></span></footer>
+    <footer class="site-footer"><span>Secret Santa Studio</span></footer>
   </body>
 </html>

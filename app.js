@@ -192,8 +192,29 @@ function initReveal(value) {
     document.querySelector("#recipient-name").textContent = assignment.recipient;
     document.querySelector("#assignment").hidden = false;
     button.hidden = true;
+    startSnowfall();
     document.querySelector("#assignment").scrollIntoView({ behavior: "smooth", block: "nearest" });
   });
+}
+
+function startSnowfall() {
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  const celebration = document.querySelector("#celebration");
+  const flakes = document.createDocumentFragment();
+  const symbols = ["❄", "✦", "✳"];
+  for (let i = 0; i < 42; i++) {
+    const flake = document.createElement("span");
+    flake.className = "falling-flake";
+    flake.textContent = symbols[i % symbols.length];
+    flake.style.setProperty("--left", `${Math.random() * 100}%`);
+    flake.style.setProperty("--drift", `${Math.random() * 180 - 90}px`);
+    flake.style.setProperty("--duration", `${2.4 + Math.random() * 1.5}s`);
+    flake.style.setProperty("--delay", `${Math.random() * 0.55}s`);
+    flake.style.setProperty("--size", `${12 + Math.random() * 15}px`);
+    flakes.append(flake);
+  }
+  celebration.append(flakes);
+  window.setTimeout(() => celebration.replaceChildren(), 4600);
 }
 
 const params = new URLSearchParams(window.location.search);
