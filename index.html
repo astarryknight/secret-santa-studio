@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#11382f" />
+    <meta name="description" content="Draw Secret Santa names and share a private reveal link with each participant." />
+    <title>Secret Santa Studio</title>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="styles.css" />
+    <script type="module" src="app.js"></script>
+  </head>
+  <body>
+    <div class="snow snow-one" aria-hidden="true">✳</div>
+    <div class="snow snow-two" aria-hidden="true">✳</div>
+    <div class="snow snow-three" aria-hidden="true">✳</div>
+
+    <header class="site-header">
+      <a class="brand" href="./" aria-label="Secret Santa Studio home">
+        <span class="brand-mark" aria-hidden="true">✦</span>
+        <span>Secret Santa <em>Studio</em></span>
+      </a>
+      <span class="header-note"><span class="status-dot"></span> A little holiday magic, made simple</span>
+    </header>
+
+    <main>
+      <section id="builder-view" class="view" aria-labelledby="builder-heading" hidden>
+        <div class="main-grid">
+          <div class="intro">
+            <p class="eyebrow"><span class="eyebrow-line"></span> THE SEASON OF SURPRISES</p>
+            <h1 id="builder-heading">Make spirits <em>bright.</em><br />Keep names a <span class="underline">surprise.</span></h1>
+            <p class="intro-copy">Add your crew, draw the names, then send each person their own little reveal link. No accounts, no spreadsheets, no peeking under the tree.</p>
+
+            <div class="holiday-art" aria-hidden="true">
+              <div class="art-sparkle sparkle-a">✦</div>
+              <div class="art-sparkle sparkle-b">✧</div>
+              <div class="art-sparkle sparkle-c">✳</div>
+              <div class="art-note note-back"></div>
+              <div class="art-envelope">
+                <div class="envelope-flap"></div>
+                <div class="envelope-seal">✦</div>
+              </div>
+              <div class="art-ribbon"></div>
+              <div class="art-caption">a surprise<br /><span>just for you</span></div>
+            </div>
+
+            <div class="how-it-works" aria-label="How it works">
+              <div><span>01</span> Add everyone</div>
+              <div><span>02</span> Draw names</div>
+              <div><span>03</span> Share the magic</div>
+            </div>
+          </div>
+
+          <div class="workspace">
+            <div class="builder-card">
+              <div class="card-topline"><span>THE NAME DRAW</span><span aria-hidden="true">✳ &nbsp; ✳ &nbsp; ✳</span></div>
+              <div class="card-heading-row">
+                <div>
+                  <p class="small-label">LET'S GET STARTED</p>
+                  <h2>Who's in the gift exchange?</h2>
+                </div>
+                <span class="card-decoration" aria-hidden="true">🎄</span>
+              </div>
+              <p class="card-copy">Write one name per line. Everyone will give one gift and receive one gift.</p>
+              <form id="draw-form" novalidate>
+                <label for="names">PARTICIPANTS</label>
+                <textarea id="names" name="names" rows="8" spellcheck="false" placeholder="Alex&#10;Jordan&#10;Sam&#10;Taylor"></textarea>
+                <div class="field-footer"><span>At least 2 people needed</span><span id="name-count">0 people</span></div>
+                <p id="form-error" class="error-message" role="alert" hidden></p>
+                <button type="submit" class="primary-button"><span>Draw Secret Santa names</span><span aria-hidden="true">✦</span></button>
+              </form>
+              <p class="privacy-note"><span aria-hidden="true">✧</span> Draws happen in your browser. The participant list is never uploaded.</p>
+            </div>
+          </div>
+        </div>
+
+        <section id="results" class="results" aria-labelledby="results-heading" hidden>
+          <div class="results-head">
+            <div>
+              <p class="eyebrow"><span class="eyebrow-line"></span> ALL WRAPPED UP</p>
+              <h2 id="results-heading">Your reveal links are ready.</h2>
+              <p>Send each person only the link beside their name. Keep this page open until you’ve shared them all.</p>
+            </div>
+            <button id="copy-all" type="button" class="secondary-button">Copy all links</button>
+          </div>
+          <div id="link-list" class="link-list"></div>
+          <p class="results-footnote">Links are lightly encoded to hide names at a glance. Anyone with a link can reveal its assignment, so share carefully.</p>
+        </section>
+      </section>
+
+      <section id="reveal-view" class="view reveal-view" aria-labelledby="reveal-heading" hidden>
+        <div class="reveal-shell">
+          <p class="eyebrow center"><span class="eyebrow-line"></span> A SPECIAL DELIVERY <span class="eyebrow-line"></span></p>
+          <div class="reveal-card">
+            <div class="reveal-stamp" aria-hidden="true">✦</div>
+            <p class="small-label">SECRET SANTA / YOUR ASSIGNMENT</p>
+            <h1 id="reveal-heading">A little mystery<br />awaits...</h1>
+            <p id="reveal-intro" class="reveal-intro"></p>
+            <button id="reveal-button" type="button" class="primary-button reveal-button">Open your envelope <span aria-hidden="true">✦</span></button>
+            <div id="assignment" class="assignment" hidden>
+              <p>You're getting a gift for</p>
+              <strong id="recipient-name"></strong>
+              <span class="assignment-decoration" aria-hidden="true">✦ ✧ ✦</span>
+              <p class="assignment-note">Keep it a secret. Make it magical.</p>
+            </div>
+          </div>
+          <p class="reveal-footer">Made with a little holiday magic <span aria-hidden="true">✳</span></p>
+        </div>
+      </section>
+
+      <section id="invalid-view" class="view reveal-view" aria-labelledby="invalid-heading" hidden>
+        <div class="reveal-shell">
+          <div class="reveal-card invalid-card">
+            <div class="reveal-stamp" aria-hidden="true">✦</div>
+            <p class="small-label">OOPS, A LITTLE MIX-UP</p>
+            <h1 id="invalid-heading">This envelope<br />isn't quite right.</h1>
+            <p class="reveal-intro">The link may be incomplete or changed. Ask your organizer to send your personal link again.</p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer"><span>Secret Santa Studio</span><span>Made for merry little moments <span aria-hidden="true">✦</span></span></footer>
+  </body>
+</html>
